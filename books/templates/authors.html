@@ -1,0 +1,108 @@
+
+{% extends 'base.html' %}
+{% block title %}
+List of books
+{%endblock%}
+
+{% block body %}
+{% load static%}
+<style>
+    .wrapper{
+    top:52px;
+    position:absolute;
+    width:100%;
+    margin:0px;
+    left:0px;
+    right:0px;
+    }
+    .author{
+    background-color:white;
+    padding:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+    }
+</style>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Library</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right nav-pills ">
+        <li ><a href="{% url 'book'%}">Book</a></li>
+        <li class="active"><a href="{% url 'author'%}">Author</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron wrapper">
+    <div class="row">
+    <span class="col-md-2 col-md-offset-1">
+    Authors
+</span><span class="col-md-2 col-md-offset-3">
+    Number of authors {{numberofauthors}}
+</span>
+
+</div>
+   {% for author in authors%}
+<div class="col-md-6 col-md-offset-1 author">
+
+
+    <a href="{% url 'authordetail' author.id%}">{{ author }}</a>
+
+</div>
+ {% endfor %}
+
+
+    <button type="button" class="btn btn-primary btn-lg col-md-offset-2" data-toggle="modal" data-target="#myModal">
+ Add Author
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <form action="." method="post">{% csrf_token %}
+              {{aform.as_p}}
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit">
+           </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
+    {% endblock %}

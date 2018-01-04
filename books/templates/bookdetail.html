@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Bookdetail
+    {%endblock%}
+{% block body %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Library</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right nav-pills ">
+        <li ><a href="{% url 'book'%}">Book</a></li>
+        <li ><a href="{% url 'author'%}">Author</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="jumbotron container">
+    <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/3688-200.png" alt="">
+    <div class="col-md-6 col-md-offset-1">
+    {{book.bookname}} <strong>by {{author}}</strong>
+    <br>
+{{book.brief_description}}
+<br>
+{{book.description}}
+        <br>
+
+</div></div>
+
+
+{% load static%}
+{% endblock %}
